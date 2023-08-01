@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AlpineJS Stores</title>
+    <!-- Alpine Plugins -->
+    <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/mask@3.x.x/dist/cdn.min.js"></script>   
+    <!-- Alpine Core -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+    <section class="container mx-auto p-5 bg-gray-200 border rounded-md">
+        <div class="my-4 p-5 border rounded-md bg-white" x-data="{ message: 'Hello Dude!' }">
+            <h1 class="text-3xl mb-2" x-text="message"></h1>
+            <input type="text" x-model="message" />
+        </div>
+
+        <div class="my-4 p-5 border rounded-md bg-white" x-data="{ first: 0, second: 0 }">
+            <input class="my-5 p-4 border rounded-md" type="text" x-model.number="first" /> + <input class="my-5 p-4 border rounded-md" type="text" x-model.number="second" /> = <span x-text="first + second"></span>
+        </div>
+
+        <div x-data="{ show: true }" class="my-4 p-5 border rounded-md bg-white">
+            <h1 class="text-3xl mb-2" x-show="show">Show Me / Hide Me!</h1>
+            <button class="p-2 my-2  text-white py-2 px-4 rounded" @click="show = !show"
+            x-bind:class="show ? 'bg-slate-700' : 'bg-red-800' " x-text="show ? 'Hide' : 'Show' "></button>
+        </div>
+
+        <div class="my-4 p-5 border rounded-md bg-white" x-data="{ currentTab: 'first' }">
+            <div class="flex justify-between">
+                <button class="p-4" @click="currentTab = 'first'" :class="{ 'bg-slate-700 text-white' : currentTab === 'first'}">First</button>
+                <button class="p-4" @click="currentTab = 'second'" :class="{ 'bg-slate-700 text-white' : currentTab === 'second' }"  >Second</button>
+                <button class="p-4" @click="currentTab = 'third'" :class="{ 'bg-slate-700 text-white' : currentTab === 'third' }" >Third</button>
+            </div>
+
+            <div class="border dotted rounded p-5">
+                <div x-show="currentTab === 'first'">
+                    <h1 class="text-3xl mb-2">First Tab</h1>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.</p>
+                </div>
+
+                <div x-show="currentTab === 'second'">
+                    <h1 class="text-3xl mb-2">Second Tab</h1>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.</p>
+                </div>
+
+                <div x-show="currentTab === 'third'">
+                    <h1 class="text-3xl mb-2">Third Tab</h1>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.</p>
+                </div>
+            </div>
+        </div>
+
+
+
+        
+
+    </section>
+</body>
+</html>
