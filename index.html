@@ -53,9 +53,48 @@
             </div>
         </div>
 
+        <!-- two way binding -->
+        <div class="my-4 p-5 border rounded-md bg-white">
+            <form
+            x-data = "{
+                form: {
+                    name: '',
+                },
+                user: null,
 
+                submitForm() {
+                    fetch('https://reqres.in/api/users', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(this.form),
+                    })
+                    .then(response => response.json())
+                    .then(user => this.user = user)
+                }
+            }"
+            @submit.prevent="submitForm"
+            >
+                <div class="mb-6">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="name">
+                        Name
+                    </label>
+                    <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    id="name" 
+                    type="text" 
+                    placeholder="Name" 
+                    x-model="form.name"
+                    required>
 
-        
+                </div>
+
+                <template x-if="user">
+                    <div x-text="'The user ' + user.name + ' was created at ' + user.createdAt "></div>
+                </template>
+            </form>
+
+        </div>
 
     </section>
 </body>
