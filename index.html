@@ -61,17 +61,10 @@
                     name: '',
                 },
                 user: null,
-
                 submitForm() {
-                    fetch('https://reqres.in/api/users', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify(this.form),
-                    })
-                    .then(response => response.json())
-                    .then(user => this.user = user)
+                    axios.post('https://reqres.in/api/user', this.form)
+                    .then(({ data }) => this.user = data)
+                    .catch(error => console.log(error))
                 }
             }"
             @submit.prevent="submitForm"
@@ -96,6 +89,37 @@
 
         </div>
 
+        <div class="my-4 p-5 rounded border bg-white">   
+
+            <div class="px-10 py-6 rounded" x-data="{ 
+                tasks: [], 
+                newTask: ''
+                }">
+                <h2 class="text-3xl my-2">Task List</h2>
+                <form @submit.prevent="tasks.push({body: newTask, completed: false }); newTask=''">
+                    <input 
+                    type="text" 
+                    placeholder="Add a new task..." 
+                    x-model="newTask" 
+                    class="border rounded p-2 w-full"                   
+                    >
+                </form>
+
+                <!-- display the tasks -->
+                <ul class="mt-3 p-4">
+                    <template x-for="(task, index) in tasks" :key="index">
+                            <li>
+                                <input type="checkbox" class="mr-2" x-model="task.completed">
+                                <span x-text="task.body" :class="{ 'line-through' : task.completed }"></span>
+                            </li>
+                    </template>
+                </ul>
+
+            </div>
+
+        </div>
+
     </section>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
 </body>
 </html>
