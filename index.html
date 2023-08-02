@@ -91,12 +91,9 @@
 
         <div class="my-4 p-5 rounded border bg-white">   
 
-            <div class="px-10 py-6 rounded" x-data="{ 
-                tasks: [], 
-                newTask: ''
-                }">
+            <div class="px-10 py-6 rounded" x-data="taskApp()">
                 <h2 class="text-3xl my-2">Task List</h2>
-                <form @submit.prevent="tasks.push({body: newTask, completed: false }); newTask=''">
+                <form @submit.prevent="submitTask">
                     <input 
                     type="text" 
                     placeholder="Add a new task..." 
@@ -120,6 +117,7 @@
         </div>
 
     </section>
+    <script src="./app.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
 </body>
 </html>
