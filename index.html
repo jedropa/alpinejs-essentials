@@ -116,6 +116,40 @@
 
         </div>
 
+        <div class="div my-4 p-5-border-rounded-md bg-white">
+
+            <div class="grid items-center justify-center">
+
+                <div x-data="{ show: true }">
+                    <div class="w-12 h-12">
+                        <div class="bg-slate-700 w-full h-full" 
+                        x-show="show"
+                        x-transition:enter="transition duration-500"
+                        x-transition:enter-start="transform opacity-0 scale-125"
+                        x-transition:enter-end="transform opacity-100 scale-100"
+                        x-transition:leave="transition duration-500"
+                        x-transition:leave-start="transform opacity-100 scale-100"
+                        x-transition:leave-end="transform opacity-0 scale-0"
+                        ></div>    
+                    </div>
+
+
+
+                    <button @click="show = !show" class="p-2 my-2  bg-green-700 py-2 px-4 rounded">Toggle</button>
+
+                </div>     
+
+
+
+
+
+            </div>
+
+
+
+        </div>
+
+
     </section>
     <script src="./app.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
