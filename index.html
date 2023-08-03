@@ -164,8 +164,34 @@
             </div>
         </div>
 
+        <div x-data>
+            <button @click="$dispatch('flash','hello world')">CLICK</button>
+        </div>
+
+        <div class="div my-4 p-5-border-rounded-md bg-white">
+
+            <div 
+            x-data="{ show: false, message: '' }"
+            x-show.transition.opacity.scale.75="show"
+            @flash.window = "
+            show = true;
+            message = $event.detail;
+            setTimeout(() => show = false, 3000);
+            "
+            x-text = "message"
+            class = "fixed bottom-0 right-0 mb-4 mr-4 bg-slate-700 text-white p-4 rounded-md"
+            >
+
+            </div>
+
+        </div>
+
+
 
     </section>
+
+
+
     <script src="./app.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
 </body>

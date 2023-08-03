@@ -12,3 +12,5 @@ let taskApp = () => {
         }
     }
 }
+
+flash = message => window.dispatchEvent(new CustomEvent('flash', { detail: message }));
